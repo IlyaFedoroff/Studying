@@ -1,7 +1,7 @@
 # Игнорировать пользовательские настройки
 *.vcxproj.user
 *.vcxproj.filters
-
+*.vcxproj
 # Временные и кэш-файлы
 .vs/
 *.obj
