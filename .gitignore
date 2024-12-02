@@ -1,5 +1,18 @@
-bin/
-obj/
-x64/
+# Игнорировать пользовательские настройки
+*.vcxproj.user
+*.vcxproj.filters
+
+# Временные и кэш-файлы
+.vs/
+*.obj
 *.exe
-*.dll
+*.log
+*.ipch
+*.pch
+*.idb
+*.suo
+
+# Игнорировать автоматическую папку x64 или Debug/Release
+x64/
+Debug/
+Release/
