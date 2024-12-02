@@ -1,0 +1,8 @@
+epsilon,PowerMethod,ScalarProductMethod,RayleighQuotientMethod,InverseIterationMethod
+0.001,49,23,23,10
+0.0001,66,31,32,13
+1e-05,83,40,40,17
+1e-06,100,48,49,20
+1e-07,117,57,57,23
+1e-08,134,65,66,27
+1e-09,151,74,74,30
