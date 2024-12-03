@@ -2,6 +2,7 @@
 *.vcxproj.user
 *.vcxproj.filters
 *.vcxproj
+*.csproj
 # Временные и кэш-файлы
 .vs/
 *.obj
@@ -11,8 +12,10 @@
 *.pch
 *.idb
 *.suo
+*.bin
 
 # Игнорировать автоматическую папку x64 или Debug/Release
 x64/
 Debug/
 Release/
+lab1/obj/
