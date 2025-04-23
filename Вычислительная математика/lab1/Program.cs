@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 
@@ -45,15 +45,15 @@ class Program
         // phi (1) ее используем для [-1,2;-1,4]
         Func<double, double> phi = x => (3 * Math.Cbrt(Math.Pow(x, 2.0)) + 4.1 * Math.Pow(x, 2) - 15.61) / 4;   // Функция для метода простых итераций
         Func<double, double> dphi = x => (1 / (2 * Math.Cbrt(x)) + 8.2 * x) / 4;   // Производная phi'
-        
+
         Func<double, double> dfunc1 = x => (4 * Math.Sqrt(x) / Math.Sqrt(3)) - (3 * Math.Pow(41, 3 / 2) * x * Math.Abs(x)) / Math.Pow(30, 3 / 2);
-        //Func<double, double> func1 = x => 
-        
+        //Func<double, double> func1 = x =>
+
         //Func<double, double> dfunc5 = x => (4 * Math.Pow(x, 1 / 2)) / Math.Sqrt(3) - (3 * Math.Pow(41, 3 / 2) * x * Math.Abs(x)) / Math.Pow(30, 3 / 2);
 
         //Func<double, double> dfunc4 = x => -3.4689 * Math.Pow(x, -5.0 / 3.0) + 0.4444 * Math.Pow(x, -2.0 / 3.0) - 1.8222 * Math.Pow(x, 1.0 / 3.0);
 
-        
+
 
 
 
@@ -62,7 +62,7 @@ class Program
         double calc_df = df(p);
 
         double calc_ddf = ddf(p);
-        
+
         //Console.WriteLine($"Значение функции в точке {p}: {calc_f}");
         //Console.WriteLine($"Значение производной функции в точке {p}: {calc_df}");
         //Console.WriteLine($"Значение второй производной в точке {p}: {calc_ddf}");
@@ -95,7 +95,7 @@ class Program
 
         double i = a;
         double h = 0.2;
-        
+
 
         // Вывод заголовка таблицы
         //Console.WriteLine("   x         f(x)");
@@ -111,7 +111,7 @@ class Program
         foreach (var epsilon in epsilons)
         {
             //BisectionMethod(f, 2, 2.2, epsilon);
-            
+
             //BisectionMethod(f, -1.4, -1.2, epsilon);
             //NewtonMethod(f, df, x0, epsilon);
             //SecantMethod(f, a, b, epsilon);
@@ -129,7 +129,7 @@ class Program
             //SimpleIterationMethod(phi, 2.1, epsilon);
         }
 
-   
+
 
         foreach (var epsilon in epsilons)
         {
@@ -285,7 +285,7 @@ class Program
             x2 = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0));
             x0 = x1;
             x1 = x2;
-            
+
 
             iterations++;
         }
@@ -300,11 +300,11 @@ class Program
         // берем произвольное значение из отрезка например x0
         double x = x0;
         int iterations = 0;
-        
+
         // проверяем если нашли корень с достаточной точностью
         while (Math.Abs(phi(x) - x) > epsilon)
         {
-           // если не устраивает точность считаем значение функции phi 
+           // если не устраивает точность считаем значение функции phi
             x = phi(x);
             //Console.WriteLine($"получили: {x}");
             // и инкрементируем итерации

@@ -6,30 +6,30 @@
 
 using namespace std;
 
-// Конструктор для инициализации матрицы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РјР°С‚СЂРёС†С‹
 Matrix::Matrix(const vector<vector<double>>& mat) : a(mat), n(mat.size()) {}
 
-// Реализация конструктора для создания матрицы n x n, заполненной initialValue
+// Р РµР°Р»РёР·Р°С†РёСЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РјР°С‚СЂРёС†С‹ n x n, Р·Р°РїРѕР»РЅРµРЅРЅРѕР№ initialValue
 Matrix::Matrix(int n, double initialValue) : n(n), a(n, std::vector<double>(n, initialValue)) {}
 
 
-// Реализация функции вывода матрицы
+// Р РµР°Р»РёР·Р°С†РёСЏ С„СѓРЅРєС†РёРё РІС‹РІРѕРґР° РјР°С‚СЂРёС†С‹
 void Matrix::printMatrix(const vector<double>& b) const {
     int width = 10;
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            // Выводим каждый элемент с фиксированной шириной и 3 знаками после запятой
+            // Р’С‹РІРѕРґРёРј РєР°Р¶РґС‹Р№ СЌР»РµРјРµРЅС‚ СЃ С„РёРєСЃРёСЂРѕРІР°РЅРЅРѕР№ С€РёСЂРёРЅРѕР№ Рё 3 Р·РЅР°РєР°РјРё РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№
             cout << setw(width) << fixed << setprecision(3) << a[i][j] << " ";
         }
-        // Выводим элементы вектора b в конце каждой строки матрицы
+        // Р’С‹РІРѕРґРёРј СЌР»РµРјРµРЅС‚С‹ РІРµРєС‚РѕСЂР° b РІ РєРѕРЅС†Рµ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРё РјР°С‚СЂРёС†С‹
         cout << "| " << setw(width) << fixed << setprecision(3) << b[i] << endl;
     }
     cout << endl;
 }
 
 
-// Реализация функции вывода матрицы
+// Р РµР°Р»РёР·Р°С†РёСЏ С„СѓРЅРєС†РёРё РІС‹РІРѕРґР° РјР°С‚СЂРёС†С‹
 void Matrix::printMatrix() const {
     int width = 10;
 
@@ -42,19 +42,19 @@ void Matrix::printMatrix() const {
     cout << endl;
 }
 
-// Реализация функции нахождения обратной матрицы
+// Р РµР°Р»РёР·Р°С†РёСЏ С„СѓРЅРєС†РёРё РЅР°С…РѕР¶РґРµРЅРёСЏ РѕР±СЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹
 Matrix Matrix::inverse() const {
-    vector<vector<double>> a_copy = a;  // Копия матрицы
+    vector<vector<double>> a_copy = a;  // РљРѕРїРёСЏ РјР°С‚СЂРёС†С‹
     vector<vector<double>> inv(n, vector<double>(n, 0));
 
-    // Создаем расширенную матрицу [A|I]
+    // РЎРѕР·РґР°РµРј СЂР°СЃС€РёСЂРµРЅРЅСѓСЋ РјР°С‚СЂРёС†Сѓ [A|I]
     for (int i = 0; i < n; ++i) {
-        inv[i][i] = 1.0;  // единичная матрица
+        inv[i][i] = 1.0;  // РµРґРёРЅРёС‡РЅР°СЏ РјР°С‚СЂРёС†Р°
     }
 
-    // Прямой ход метода Гаусса
+    // РџСЂСЏРјРѕР№ С…РѕРґ РјРµС‚РѕРґР° Р“Р°СѓСЃСЃР°
     for (int i = 0; i < n; ++i) {
-        // Поиск максимального элемента для выбора главного элемента
+        // РџРѕРёСЃРє РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РґР»СЏ РІС‹Р±РѕСЂР° РіР»Р°РІРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
         int max_row = i;
         for (int k = i + 1; k < n; ++k) {
             if (abs(a_copy[k][i]) > abs(a_copy[max_row][i])) {
@@ -62,18 +62,18 @@ Matrix Matrix::inverse() const {
             }
         }
 
-        // Меняем строки местами в обоих матрицах (A и единичная часть)
+        // РњРµРЅСЏРµРј СЃС‚СЂРѕРєРё РјРµСЃС‚Р°РјРё РІ РѕР±РѕРёС… РјР°С‚СЂРёС†Р°С… (A Рё РµРґРёРЅРёС‡РЅР°СЏ С‡Р°СЃС‚СЊ)
         swap(a_copy[i], a_copy[max_row]);
         swap(inv[i], inv[max_row]);
 
-        // Нормализуем строку, делая главный элемент равным 1
+        // РќРѕСЂРјР°Р»РёР·СѓРµРј СЃС‚СЂРѕРєСѓ, РґРµР»Р°СЏ РіР»Р°РІРЅС‹Р№ СЌР»РµРјРµРЅС‚ СЂР°РІРЅС‹Рј 1
         double diag_elem = a_copy[i][i];
         for (int j = 0; j < n; ++j) {
             a_copy[i][j] /= diag_elem;
             inv[i][j] /= diag_elem;
         }
 
-        // Обнуление элементов ниже и выше главного элемента
+        // РћР±РЅСѓР»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РЅРёР¶Рµ Рё РІС‹С€Рµ РіР»Р°РІРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
         for (int k = 0; k < n; ++k) {
             if (k != i) {
                 double factor = a_copy[k][i];
@@ -88,14 +88,14 @@ Matrix Matrix::inverse() const {
     return Matrix(inv);
 }
 
-// Реализация метода решения СЛАУ методом Гаусса
+// Р РµР°Р»РёР·Р°С†РёСЏ РјРµС‚РѕРґР° СЂРµС€РµРЅРёСЏ РЎР›РђРЈ РјРµС‚РѕРґРѕРј Р“Р°СѓСЃСЃР°
 vector<double> Matrix::solveGauss(const vector<double>& b) const {
-    vector<vector<double>> a_copy = a;  // Копия матрицы
-    vector<double> b_copy = b;  // Копия правой части
+    vector<vector<double>> a_copy = a;  // РљРѕРїРёСЏ РјР°С‚СЂРёС†С‹
+    vector<double> b_copy = b;  // РљРѕРїРёСЏ РїСЂР°РІРѕР№ С‡Р°СЃС‚Рё
 
-    // Прямой ход метода Гаусса
+    // РџСЂСЏРјРѕР№ С…РѕРґ РјРµС‚РѕРґР° Р“Р°СѓСЃСЃР°
     for (int i = 0; i < n; ++i) {
-        // Поиск максимального элемента для выбора главного элемента
+        // РџРѕРёСЃРє РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РґР»СЏ РІС‹Р±РѕСЂР° РіР»Р°РІРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
         int max_row = i;
         for (int k = i + 1; k < n; ++k) {
             if (abs(a_copy[k][i]) > abs(a_copy[max_row][i])) {
@@ -103,18 +103,18 @@ vector<double> Matrix::solveGauss(const vector<double>& b) const {
             }
         }
 
-        // Меняем строки местами в матрице и векторах
+        // РњРµРЅСЏРµРј СЃС‚СЂРѕРєРё РјРµСЃС‚Р°РјРё РІ РјР°С‚СЂРёС†Рµ Рё РІРµРєС‚РѕСЂР°С…
         swap(a_copy[i], a_copy[max_row]);
         swap(b_copy[i], b_copy[max_row]);
 
-        // Нормализуем строку
+        // РќРѕСЂРјР°Р»РёР·СѓРµРј СЃС‚СЂРѕРєСѓ
         double diag_elem = a_copy[i][i];
         for (int j = i; j < n; ++j) {
             a_copy[i][j] /= diag_elem;
         }
         b_copy[i] /= diag_elem;
 
-        // Обнуляем элементы ниже главного
+        // РћР±РЅСѓР»СЏРµРј СЌР»РµРјРµРЅС‚С‹ РЅРёР¶Рµ РіР»Р°РІРЅРѕРіРѕ
         for (int k = i + 1; k < n; ++k) {
             double factor = a_copy[k][i];
             for (int j = i; j < n; ++j) {
@@ -123,7 +123,7 @@ vector<double> Matrix::solveGauss(const vector<double>& b) const {
             b_copy[k] -= factor * b_copy[i];
         }
     }
-    // Обратный ход метода Гаусса
+    // РћР±СЂР°С‚РЅС‹Р№ С…РѕРґ РјРµС‚РѕРґР° Р“Р°СѓСЃСЃР°
     vector<double> x(n);
     for (int i = n - 1; i >= 0; --i) {
         x[i] = b_copy[i];
@@ -134,7 +134,7 @@ vector<double> Matrix::solveGauss(const vector<double>& b) const {
     return x;
 }
 
-// Функция для нахождения определителя методом Гаусса
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ РѕРїСЂРµРґРµР»РёС‚РµР»СЏ РјРµС‚РѕРґРѕРј Р“Р°СѓСЃСЃР°
 double Matrix::determinant() const {
     vector<vector<double>> a_copy = a;
     double det = 1;
@@ -150,12 +150,12 @@ double Matrix::determinant() const {
 
         if (i != max_row) {
             swap(a_copy[i], a_copy[max_row]);
-            sign *= -1;  // Меняем знак определителя при перестановке строк
+            sign *= -1;  // РњРµРЅСЏРµРј Р·РЅР°Рє РѕРїСЂРµРґРµР»РёС‚РµР»СЏ РїСЂРё РїРµСЂРµСЃС‚Р°РЅРѕРІРєРµ СЃС‚СЂРѕРє
         }
 
-        det *= a_copy[i][i];  // Диагональные элементы для определителя
+        det *= a_copy[i][i];  // Р”РёР°РіРѕРЅР°Р»СЊРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РґР»СЏ РѕРїСЂРµРґРµР»РёС‚РµР»СЏ
 
-        // Приведение к треугольной форме
+        // РџСЂРёРІРµРґРµРЅРёРµ Рє С‚СЂРµСѓРіРѕР»СЊРЅРѕР№ С„РѕСЂРјРµ
         for (int k = i + 1; k < n; ++k) {
             double factor = a_copy[k][i] / a_copy[i][i];
             for (int j = i; j < n; ++j) {
@@ -167,13 +167,13 @@ double Matrix::determinant() const {
     return det * sign;
 }
 
-// Функция для нахождения LU-разложения
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ LU-СЂР°Р·Р»РѕР¶РµРЅРёСЏ
 void Matrix::LU_decomposition(Matrix& L, Matrix& U) const {
     vector<vector<double>> L_data(n, vector<double>(n, 0.0));
     vector<vector<double>> U_data = a;
 
     for (int i = 0; i < n; ++i) {
-        L_data[i][i] = 1.0;  // Диагональные элементы L равны 1
+        L_data[i][i] = 1.0;  // Р”РёР°РіРѕРЅР°Р»СЊРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ L СЂР°РІРЅС‹ 1
 
         for (int j = i; j < n; ++j) {
             double sum = 0.0;
@@ -196,12 +196,12 @@ void Matrix::LU_decomposition(Matrix& L, Matrix& U) const {
     U = Matrix(U_data);
 }
 
-// Функция для решения СЛАУ методом LU-разложения
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЂРµС€РµРЅРёСЏ РЎР›РђРЈ РјРµС‚РѕРґРѕРј LU-СЂР°Р·Р»РѕР¶РµРЅРёСЏ
 vector<double> Matrix::solveLU(const vector<double>& b) const {
     Matrix L(n, n), U(n, n);
     LU_decomposition(L, U);
 
-    // Решаем L * y = b методом подстановки вперед
+    // Р РµС€Р°РµРј L * y = b РјРµС‚РѕРґРѕРј РїРѕРґСЃС‚Р°РЅРѕРІРєРё РІРїРµСЂРµРґ
     vector<double> y(n);
     for (int i = 0; i < n; ++i) {
         y[i] = b[i];
@@ -210,7 +210,7 @@ vector<double> Matrix::solveLU(const vector<double>& b) const {
         }
     }
 
-    // Решаем U * x = y методом подстановки назад
+    // Р РµС€Р°РµРј U * x = y РјРµС‚РѕРґРѕРј РїРѕРґСЃС‚Р°РЅРѕРІРєРё РЅР°Р·Р°Рґ
     vector<double> x(n);
     for (int i = n - 1; i >= 0; --i) {
         x[i] = y[i];
@@ -223,7 +223,7 @@ vector<double> Matrix::solveLU(const vector<double>& b) const {
     return x;
 }
 
-// Функция для нахождения определителя методом LU-разложения
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ РѕРїСЂРµРґРµР»РёС‚РµР»СЏ РјРµС‚РѕРґРѕРј LU-СЂР°Р·Р»РѕР¶РµРЅРёСЏ
 double Matrix::determinantLU() const {
     Matrix L(n, n), U(n, n);
     LU_decomposition(L, U);
@@ -236,28 +236,28 @@ double Matrix::determinantLU() const {
 }
 
 
-// Функция для оценки погрешности правой части после решения СЛАУ
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РѕС†РµРЅРєРё РїРѕРіСЂРµС€РЅРѕСЃС‚Рё РїСЂР°РІРѕР№ С‡Р°СЃС‚Рё РїРѕСЃР»Рµ СЂРµС€РµРЅРёСЏ РЎР›РђРЈ
 double Matrix::estimateError(const std::vector<double>& b, const std::vector<double>& x) const {
-    std::vector<double> r(n, 0.0);  // Вектор результата умножения A * x
+    std::vector<double> r(n, 0.0);  // Р’РµРєС‚РѕСЂ СЂРµР·СѓР»СЊС‚Р°С‚Р° СѓРјРЅРѕР¶РµРЅРёСЏ A * x
 
-    // Вычисляем r = A * x
+    // Р’С‹С‡РёСЃР»СЏРµРј r = A * x
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
             r[i] += a[i][j] * x[j];
         }
     }
 
-    // Вычисляем вектор погрешности: error = b - r
+    // Р’С‹С‡РёСЃР»СЏРµРј РІРµРєС‚РѕСЂ РїРѕРіСЂРµС€РЅРѕСЃС‚Рё: error = b - r
     std::vector<double> error(n);
     for (int i = 0; i < n; ++i) {
         error[i] = b[i] - r[i];
     }
 
-    // Вычисляем Евклидову норму погрешности: ||error||_2
+    // Р’С‹С‡РёСЃР»СЏРµРј Р•РІРєР»РёРґРѕРІСѓ РЅРѕСЂРјСѓ РїРѕРіСЂРµС€РЅРѕСЃС‚Рё: ||error||_2
     double norm = 0.0;
     for (int i = 0; i < n; ++i) {
         norm += error[i] * error[i];
     }
 
-    return std::sqrt(norm);  // Возвращаем корень из суммы квадратов
+    return std::sqrt(norm);  // Р’РѕР·РІСЂР°С‰Р°РµРј РєРѕСЂРµРЅСЊ РёР· СЃСѓРјРјС‹ РєРІР°РґСЂР°С‚РѕРІ
 }
