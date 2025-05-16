@@ -1,0 +1,346 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.main-title {
+    color: #2a6496;
+    text-align: center;
+}
+.main-logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+button {
+    background-color: #2a6496;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+button:hover {
+    background-color: #67a3d8;
+}
+
+.checkout-btn:disabled {
+    background-color: #cccccc;
+    cursor: now-allowed;
+}
+
+.load-more {
+    display: block;
+
+}
+
+
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));   /* адаптивная сетка */
+    gap: 20px;  /* расстояние между карточками */
+    padding: 20px;
+}
+
+.service {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease;
+
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: calc(0.1s * var(--delay));     /* задержка для эффекта каскада*/
+}
+.service:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.service h3 {
+    margin-top: 0;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loader {
+    border: 4px solid #2a6496;
+    border-top: 4px solid #333;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.load-more {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.load-more:active {
+    transform: scale(0.97);
+}
+
+.price {
+    font-weight: bold;
+    color: #2a6496;
+    margin: 10px 0;
+}
+.cart {
+    position: fixed;
+    top: 20px;
+    right: -320px;
+    background: #ffffffee;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 300px;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 1000;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+.cart:hover {
+    opacity: 1;
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.filters {
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1 1 100px;
+    position: relative;
+}
+.filter-group input {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.autocomplete {
+    position: absolute;
+    top: 100%;
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    z-index: 100;
+    width: 100%;
+    margin-top: 2px;
+    display: none;
+}
+.autocomplete li {
+    padding: 10px;
+    cursor: pointer;
+    list-style: none;
+}
+.autocomplete li:hover {
+    background-color: #f5f5f5;
+}
+
+@media (max-height: 600px) {
+    .autocomplete {
+        max-height: 120px;
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+.navbar {
+    background: #f8f9fa;
+    padding: 1rem;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #0066cc;
+}
+
+.active {
+    color: #0066cc;
+    font-weight: bold;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.nav-item--dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+.dropdown-arrow {
+    font-size: 0.8em;
+    margin-left: 0.3rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.model-content {
+    background-color: #fff;
+    margin: 6% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    border: 2px solid #ddd;
+}
+
+.success-message {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-order-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-order-btn:hover {
+    background-color: #0056b3;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.95); }
+    to {opacity: 1; transform: scale(1); }
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Клининговая компания Чистюля</title>
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
+
+	<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <nav class="navbar">
+		<ul class="nav-menu nav-list">
+			<li class="nav-item">
+				<a href="index.html" class="nav-link nav-link--main active">Главная</a>
+			</li>
+			<li class="nav-item nav-item--dropdown dropdown">
+				<a href="#" class="nav-link nav-link--dropdown">Услуги <span class="dropdown-arrow">▼</span></a>
+				<div class="dropdown-content dropdown-menu">
+					<a href="#general" class="dropdown-link nav-link">Генеральная уборка</a>
+					<a href="#regular" class="dropdown-link nav-link">Регулярная уборка</a>
+					<a href="#window" class="dropdown-link nav-link">Мойка окон</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a href="contacts.html" class="nav-link nav-link--main">Контакты</a>
+			</li>
+			<li class="nav-item">
+				<a href="about.html" class="nav-link nav-link--main">О нас</a>
+			</li>
+		</ul>
+	</nav>
+
+    <h1 class="main-title">Клининговая компания Чистюля</h1>
+    <img class="main-logo" src="img/logo.jpg" alt="Логотип компании">
+    <p class="main-article">Мы предоставляем профессиональные клининговые услуги с гарантией качества!</p>
+
+    <div class="cart" id="cart">
+        <h3>Корзина</h3>
+        <button id="toggleCart" style="position: absolute; top: 10px; right: 10px;">✕</button>
+        <div id="cart-items"></div>
+        <p>Итого: <span id="total-price">0</span> руб.</p>
+        <button id="checkoutBtn" class="checkout-btn">Оформить заказ</button>
+        <button id="clear-cart">Очистить корзину</button>
+    </div>
+
+    <h2 class="main-h2">Наши услуги</h2>
+
+    <div class="filters">
+        <div class="filter-group">
+            <label for="searchName">Поиск по названию:</label>
+            <input type="text" id="searchName" placeholder="мойка окон">
+
+            <ul id="autocomplete-list" class="autocomplete"></ul>
+        </div>
+
+        <div class="filter-group">
+            <label for="priceMin">Цена от:</label>
+            <input type="number" id="priceMin" placeholder="мин." min="0">
+        </div>
+
+        <div class="filter-group">
+            <label for="priceMax">до:</label>
+            <input type="number" id="priceMax" placeholder="макс." min="0">
+        </div>
+
+        <button id="resetFilters" class="rest-btn">Сбросить фильтры</button>
+    </div>
+
+    <template id="serviceTemplate">
+        <div class="service">
+            <h3></h3>
+            <p class="description"></p>
+            <p class="price"></p>
+            <button class="add-to-cart" data-name="" data-price="">Дообавить в корзину</button>
+        </div>
+    </template>
+    <div class="services-container">
+        <div class="loader"></div>
+    </div>
+    <button id="loadMoreBtn" class="load-more">Показать ещё</button>
+
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close-btn">&times;</span>
+            <h3>Оформление заказа</h3>
+            <form id="orderForm">
+                <label for="clientName">Ваше имя</label>
+                <input type="text" id="clientName" name="name" required>
+
+                <label for="clientPhone">Телефон:</label>
+                <input label type="tel" id="clientPhone" name="phone" placeholder="+7 (___) ___-__-__" required>
+
+                <label for="clientAddress">Адрес:</label>
+                <input type="text" id="clientAddress" name="address" required>
+
+                <label for="clientComment">Комментарий к заказу:</label>
+                <textarea id="clientComment" name="comment"></textarea>
+
+                <p><strong>Итого:</strong> <span id="modalTotalPrice">0</span> руб.</p>
+
+                <button type="submit" class="submit-order-btn">Отправить заказ</button>
+            </form>
+        </div>
+    </div>
+    <div id="successMessage" class="success-message">Заказ успешно отправлен!</div>
+</body>
+</html>
