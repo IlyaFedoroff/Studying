@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif; margin: 20px;
+}
+.container {
+     max-width: 600px; margin: 0 auto;
+}
+input, button {
+    padding: 8px; margin: 10px 0;
+}
+.city-info {
+    background: #f9f9f9; padding: 15px; border-radius: 5px;
+}
+.error {
+    color: red;
+}
+#autocomplete-list {
+    border: 1px solid #ddd;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+}
+#autocomplete-list div {
+    padding: 8px;
+    cursor: pointer;
+}
+#autocomplete-list div:hover {
+    background: #f1f1f1;
+}
+
+#show-all-btn {
+    margin-left: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#show-all-btn:hover {
+    background-color: #45a049;
+}
+
+.cities-list {
+    margin-top: 20px;
+}
+
+.cities-list .city-info {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    border: 1px solid #ddd;
+}
+
+.cities-list .city-info h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
